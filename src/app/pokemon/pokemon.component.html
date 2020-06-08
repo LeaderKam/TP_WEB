@@ -1,0 +1,29 @@
+
+<div class="container">
+  {{title}}
+  <div class="form-group row">
+
+    <div class=" col-md-3 col-sm-6">
+        <input class="form-control" type="text" [(ngModel)]="id">
+    </div>
+    <div class=" col-md-3 col-sm-6">
+        <input class="form-control " type="text" readonly value={{id}}>
+    </div>
+</div>
+
+<div class="form-group row">
+  <div class=" col-md-3 col-sm-6">
+    <input class="form-control " placeholder="filtre" type="text" [(ngModel)]="searchPokeName">
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <select class="form-control " [(ngModel)]="selectedPokeId" >
+      <option [value] ="poke.id" *ngFor='let poke of pokes | filterPokemonPipe:"name":searchPokeName'>{{poke.name}}  </option>
+    </select>Mon poke Id: {{selectedPokeId}}
+  </div>
+</div>
+
+<button (click)="go()" class="btn btn-primary">VALIDATE</button>
+<div *ngIf="pokemonDetail" class="container-fluid">
+
+  <app-pokemon-detail [detail]="pokemonDetail"></app-pokemon-detail>
+</div>
